@@ -7,6 +7,8 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import {NgxMaskModule} from 'ngx-mask';
+
 
 import { AppComponent } from './app.component';
 import { PhoneBookComponent } from './phone-book/phone-book.component';
@@ -31,7 +33,8 @@ import { DialogComponent } from './dialog/dialog.component';
     MatCardModule,
     FormsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxMaskModule.forRoot()
   ],
   entryComponents: [
     DialogComponent

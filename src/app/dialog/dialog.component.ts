@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef} from '@angular/material';
 import {MAT_DIALOG_DATA} from '@angular/material';
+import {FormControl, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-dialog',
@@ -14,8 +15,12 @@ export class DialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  onCloseConfirm() {
-    this.dialogRef.close('Confirm');
+  submitForm(form: NgForm) {
+    console.log(form);
+    console.log(form.value.phone.length);
+    if (form.valid) {
+      this.dialogRef.close(form.value);
+    }
   }
 
   onCloseCancel() {

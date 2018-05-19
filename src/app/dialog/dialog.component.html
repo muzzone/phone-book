@@ -1,13 +1,42 @@
 <div>
   <h2 mat-dialog-title>Add new contact</h2>
-  <mat-dialog-content>
-    <p>
-      content
-    </p>
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-raised-button (click)="onCloseCancel()">Cancel</button>
-    <button mat-raised-button (click)="onCloseConfirm()">Confirm</button>
-  </mat-dialog-actions>
+  <form (ngSubmit)="submitForm(form)" #form="ngForm">
+    <mat-dialog-content>
+        <mat-form-field>
+          <input matInput type="text" #phone="ngModel"  name="phone" ngModel required placeholder="Phone number" mask='(000) 000-0000'>
+          <mat-error>
+            Please enter a valid phone number
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="first_name" required ngModel placeholder="First name">
+          <mat-error>
+            Please enter first name
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="last_name" required ngModel placeholder="Last name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="company" required ngModel placeholder="Company">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="email" email required ngModel placeholder="Email">
+          <mat-error>
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="photo" required ngModel placeholder="Photo URL">
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-raised-button (click)="onCloseCancel()">Cancel</button>
+      <button mat-raised-button
+              type="submit"
+              [disabled]="!form.valid || phone.value && phone.value.length < 10 "
+      >Confirm</button>
+    </mat-dialog-actions>
+  </form>
 </div>
 
