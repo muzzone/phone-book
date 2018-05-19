@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog} from '@angular/material';
+import { DialogComponent} from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-add-contact',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddContactComponent implements OnInit {
 
-  constructor() { }
+  dialogResult = '';
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '600',
+      data: 'Text'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.dialogResult = result;
+    });
+  }
 }

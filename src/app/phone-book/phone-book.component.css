@@ -1,0 +1,12 @@
+.contactList{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.mat-card {
+  width: 300px;
+  margin: 10px 0;
+}
+.cardAvatar{
+  width: 100%;
+}
