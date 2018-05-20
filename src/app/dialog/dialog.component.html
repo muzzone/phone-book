@@ -1,40 +1,49 @@
 <div>
   <h2 mat-dialog-title>Add new contact</h2>
-  <form (ngSubmit)="submitForm(form)" #form="ngForm">
+  <form (ngSubmit)="submitForm()" [formGroup]="form">
     <mat-dialog-content>
         <mat-form-field>
-          <input matInput type="text" #phone="ngModel"  name="phone" ngModel required placeholder="Phone number" mask='(000) 000-0000'>
-          <mat-error>
+          <input matInput formControlName="phone" required placeholder="Phone number" mask='(000) 000-0000'>
+          <mat-error >
             Please enter a valid phone number
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput name="first_name" required ngModel placeholder="First name">
+          <input matInput formControlName="first_name" required placeholder="First name">
           <mat-error>
-            Please enter first name
+            Please enter first name. At least 4 characters
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput name="last_name" required ngModel placeholder="Last name">
+          <input matInput formControlName="last_name" required  placeholder="Last name">
+          <mat-error>
+            Please enter last name. At least 4 characters
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput name="company" required ngModel placeholder="Company">
+          <input matInput formControlName="company" required  placeholder="Company">
+          <mat-error>
+            Please enter company name. At least 4 characters
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput name="email" email required ngModel placeholder="Email">
+          <input matInput formControlName="email" required  placeholder="Email">
           <mat-error>
             Please enter a valid email address
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput name="photo" required ngModel placeholder="Photo URL">
+          <input matInput type="url" formControlName="photo" required placeholder="Photo URL">
+          <mat-error>
+            Please enter photo url
+          </mat-error>
         </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
       <button mat-raised-button (click)="onCloseCancel()">Cancel</button>
       <button mat-raised-button
               type="submit"
-              [disabled]="!form.valid || phone.value && phone.value.length < 10 "
+              [disabled]="!form.valid"
       >Confirm</button>
     </mat-dialog-actions>
   </form>
