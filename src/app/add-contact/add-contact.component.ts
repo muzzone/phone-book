@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { MatDialog} from '@angular/material';
 import { DialogComponent} from '../dialog/dialog.component';
+import {Contact} from '../phone-book.model';
 
 @Component({
   selector: 'app-add-contact',
@@ -9,7 +10,7 @@ import { DialogComponent} from '../dialog/dialog.component';
 })
 export class AddContactComponent implements OnInit {
 
-  dialogResult = '';
+  @Output() addContact = new EventEmitter<Contact>();
 
   constructor(public dialog: MatDialog) { }
 
@@ -24,7 +25,18 @@ export class AddContactComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      this.dialogResult = result;
+      if (result !== 'Cancel') {
+        const contact = new Contact(
+          result.first_name,
+          result.last_name,
+          result.phone,
+          result.company,
+          result.email,
+          result.photo
+        );
+
+        this.addContact.emit(contact);
+      }
     });
   }
 }

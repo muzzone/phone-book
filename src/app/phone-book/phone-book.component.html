@@ -1,7 +1,7 @@
 <main>
   <div class="container">
     <app-search></app-search>
-    <app-add-contact></app-add-contact>
+    <app-add-contact (addContact)="onAdd($event)"></app-add-contact>
     <div class="contactList">
       <mat-card *ngFor="let contact of contacts">
         <mat-card-header>

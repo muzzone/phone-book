@@ -26,7 +26,6 @@ export class DialogComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.form);
     if (this.form.valid) {
       this.dialogRef.close(this.form.value);
     }
