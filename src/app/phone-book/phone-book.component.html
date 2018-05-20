@@ -1,28 +1,41 @@
 <main>
   <div class="container">
-    <app-search></app-search>
-    <app-add-contact (addContact)="onAdd($event)"></app-add-contact>
+    <app-search (search)="search($event)"></app-search>
+    <app-add-contact></app-add-contact>
     <div class="contactList">
-      <mat-card *ngFor="let contact of contacts">
-        <mat-card-header>
-          <div mat-card-avatar>
-            <img src="{{contact.photo}}" alt="avatar" class="cardAvatar">
-          </div>
-          <mat-card-title>{{contact.firstName}}</mat-card-title>
-          <mat-card-subtitle>{{contact.lastName}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p>
-            {{contact.phone}}
-          </p>
-          <p>
-            {{contact.email}}
-          </p>
-          <p>
-            {{contact.company}}
-          </p>
-        </mat-card-content>
-      </mat-card>
+      <div *ngFor="let contact of contacts"
+           [ngClass]="{
+           hidden:contact.firstName.toLocaleLowerCase().indexOf(searchStr) == -1 &&
+           contact.lastName.toLocaleLowerCase().indexOf(searchStr) == -1 &&
+           contact.email.toLocaleLowerCase().indexOf(searchStr) == -1 &&
+           contact.company.toLocaleLowerCase().indexOf(searchStr) == -1
+           }">
+        <mat-card *ngIf="
+        contact.firstName.toLocaleLowerCase().indexOf(searchStr) != -1 ||
+        contact.lastName.toLocaleLowerCase().indexOf(searchStr) != -1 ||
+        contact.email.toLocaleLowerCase().indexOf(searchStr) != -1 ||
+        contact.company.toLocaleLowerCase().indexOf(searchStr) != -1
+        ">
+          <mat-card-header>
+            <div mat-card-avatar>
+              <img src="{{contact.photo}}" alt="avatar" class="cardAvatar">
+            </div>
+            <mat-card-title>{{contact.firstName}}</mat-card-title>
+            <mat-card-subtitle>{{contact.lastName}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{contact.phone}}
+            </p>
+            <p>
+              {{contact.email}}
+            </p>
+            <p>
+              {{contact.company}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
   </div>
 </main>

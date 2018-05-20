@@ -2,6 +2,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { MatDialog} from '@angular/material';
 import { DialogComponent} from '../dialog/dialog.component';
 import {Contact} from '../phone-book.model';
+import {Store} from '@ngrx/store';
+import {AppState} from '../redux/app.state';
+import {AddContact} from '../redux/contacts.action';
 
 @Component({
   selector: 'app-add-contact',
@@ -10,9 +13,7 @@ import {Contact} from '../phone-book.model';
 })
 export class AddContactComponent implements OnInit {
 
-  @Output() addContact = new EventEmitter<Contact>();
-
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private store: Store<AppState>) { }
 
   ngOnInit() {
   }
@@ -35,7 +36,7 @@ export class AddContactComponent implements OnInit {
           result.photo
         );
 
-        this.addContact.emit(contact);
+        this.store.dispatch(new AddContact(contact));
       }
     });
   }

@@ -1,12 +1,15 @@
 .contactList{
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   flex-wrap: wrap;
 }
 .mat-card {
   width: 300px;
-  margin: 10px 0;
+  margin: 10px 26px;
 }
 .cardAvatar{
   width: 100%;
+}
+.hidden{
+  display: none;
 }

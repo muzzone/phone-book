@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Contact, Contacts} from '../phone-book.model';
+import {Store} from '@ngrx/store';
+import {AppState} from '../redux/app.state';
 
 @Component({
   selector: 'app-phone-book',
@@ -7,21 +9,20 @@ import {Contact, Contacts} from '../phone-book.model';
   styleUrls: ['./phone-book.component.css']
 })
 export class PhoneBookComponent implements OnInit {
-  public contacts: Contact[] = [
-    new Contact('Hugh', 'Laurie', '(925) 462-3345', 'Microsoft', 'HughLaurie@gmail.com', 'http://img2.mtime.com/up/1521/1947521/1bd946db-12f8-4427-bb81-51029e6dd730_500.jpg'),
-    new Contact('Hugh', 'Laurie', '(925) 462-3345', 'Microsoft', 'HughLaurie@gmail.com', 'http://img2.mtime.com/up/1521/1947521/1bd946db-12f8-4427-bb81-51029e6dd730_500.jpg'),
-    new Contact('Hugh', 'Laurie', '(925) 462-3345', 'Microsoft', 'HughLaurie@gmail.com', 'http://img2.mtime.com/up/1521/1947521/1bd946db-12f8-4427-bb81-51029e6dd730_500.jpg'),
-    new Contact('Hugh', 'Laurie', '(925) 462-3345', 'Microsoft', 'HughLaurie@gmail.com', 'http://img2.mtime.com/up/1521/1947521/1bd946db-12f8-4427-bb81-51029e6dd730_500.jpg'),
-    new Contact('Hugh', 'Laurie', '(925) 462-3345', 'Microsoft', 'HughLaurie@gmail.com', 'http://img2.mtime.com/up/1521/1947521/1bd946db-12f8-4427-bb81-51029e6dd730_500.jpg'),
-    new Contact('Hugh', 'Laurie', '(925) 462-3345', 'Microsoft', 'HughLaurie@gmail.com', 'http://img2.mtime.com/up/1521/1947521/1bd946db-12f8-4427-bb81-51029e6dd730_500.jpg')
-  ];
 
-  onAdd(contact: Contact) {
-    this.contacts.push(contact);
+  public contacts: Contact[] = [];
+
+  searchStr = '';
+
+  search(searchStr) {
+    this.searchStr = searchStr;
   }
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
+    this.store.select('contactsPage').subscribe(({contacts}) => {
+      this.contacts = contacts;
+    });
   }
 }
