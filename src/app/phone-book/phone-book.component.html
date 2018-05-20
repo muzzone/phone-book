@@ -4,17 +4,17 @@
     <app-add-contact></app-add-contact>
     <div class="contactList">
       <div *ngFor="let contact of contacts"
-           [ngClass]="{
-           hidden:contact.firstName.toLocaleLowerCase().indexOf(searchStr) == -1 &&
-           contact.lastName.toLocaleLowerCase().indexOf(searchStr) == -1 &&
-           contact.email.toLocaleLowerCase().indexOf(searchStr) == -1 &&
-           contact.company.toLocaleLowerCase().indexOf(searchStr) == -1
+           [ngClass]="{hidden:
+           contact.firstName.toLocaleLowerCase().indexOf(searchStr.toLocaleLowerCase()) == -1 &&
+           contact.lastName.toLocaleLowerCase().indexOf(searchStr.toLocaleLowerCase()) == -1 &&
+           contact.email.toLocaleLowerCase().indexOf(searchStr.toLocaleLowerCase()) == -1 &&
+           contact.company.toLocaleLowerCase().indexOf(searchStr.toLocaleLowerCase()) == -1
            }">
         <mat-card *ngIf="
-        contact.firstName.toLocaleLowerCase().indexOf(searchStr) != -1 ||
-        contact.lastName.toLocaleLowerCase().indexOf(searchStr) != -1 ||
-        contact.email.toLocaleLowerCase().indexOf(searchStr) != -1 ||
-        contact.company.toLocaleLowerCase().indexOf(searchStr) != -1
+        contact.firstName.toLocaleLowerCase().indexOf(searchStr.toLocaleLowerCase()) != -1 ||
+        contact.lastName.toLocaleLowerCase().indexOf(searchStr.toLocaleLowerCase()) != -1 ||
+        contact.email.toLocaleLowerCase().indexOf(searchStr.toLocaleLowerCase()) != -1 ||
+        contact.company.toLocaleLowerCase().indexOf(searchStr.toLocaleLowerCase()) != -1
         ">
           <mat-card-header>
             <div mat-card-avatar>
@@ -25,7 +25,7 @@
           </mat-card-header>
           <mat-card-content>
             <p>
-              {{contact.phone}}
+              {{contact.phone | appPhoneNumber}}
             </p>
             <p>
               {{contact.email}}

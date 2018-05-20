@@ -17,6 +17,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { SearchComponent } from './search/search.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { contactsReducer } from './redux/contacts.reducer';
+import { PhoneNumberFormatterPipe } from './phone-number-formatter.pipe';
 
 
 
@@ -26,7 +27,8 @@ import { contactsReducer } from './redux/contacts.reducer';
     PhoneBookComponent,
     AddContactComponent,
     SearchComponent,
-    DialogComponent
+    DialogComponent,
+    PhoneNumberFormatterPipe
   ],
   imports: [
     MatToolbarModule,

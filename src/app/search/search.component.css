@@ -1,3 +1,6 @@
 .searchBlock mat-form-field{
   width: 100%;
 }
+.searchBlock{
+  padding: 0 26px;
+}
